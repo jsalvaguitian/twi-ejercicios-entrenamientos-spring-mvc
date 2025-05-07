@@ -26,7 +26,7 @@ public class ControladorProductoOpcion1Test {
         ModelAndView vistaModelada = controladorProducto.listarProductos();
         //validacion
         assertThat(vistaEsperada, equalTo(vistaModelada.getViewName()));
-        assertTrue(vistaModelada.getModel().containsKey("ListaProductos"));
+        assertTrue(vistaModelada.getModel().containsKey("listaProductos"));
     }
 
     
