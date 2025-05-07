@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/vapor/bootstrap.min.css"
+        integrity="sha512-9LoG2EQdcmuEQpzkslqa3whcL8LM+7GGPsW2MK1gRlmiML0G7M5ZPj2aZaW2DyixslBfZoy4kANfP/MYWDCSiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Confirmacion </title>
+</head>
+
+<body>
+    <main>
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4"  style="margin-top:2rem">
+                <div class="card border-secondary" style="max-width: 27rem;">
+                    <div class="card-body">
+                        <h4 class="card-title mb-1">
+                            Muchas gracias por contactarse, <span class="card-title" th:text="${contactoDto.getNombre()}"> </span>
+                        </h4>
+                        <p class="card-text">Su correo: <span class="card-text" th:text="${contactoDto.getEmail()}"></span></p>
+                        <p class="card-text">Su mensaje: <span class="card-text" th:text="${contactoDto.getMensaje()}"></span></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/vapor/bootstrap.min.css"
+          integrity="sha512-9LoG2EQdcmuEQpzkslqa3whcL8LM+7GGPsW2MK1gRlmiML0G7M5ZPj2aZaW2DyixslBfZoy4kANfP/MYWDCSiw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Contacto </title>
+</head>
+
+<body >
+<main>
+    <div class="row" style="width:100%" >
+        <div class="col-lg-4 offset-lg-4" style="margin-top:2rem">
+            <div class="card border-secondary" style="max-width: 27rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Contacto</h4>
+                    <form th:action="@{/contacto2}" method="post" th:object="${contactoDto}">
+                        <input th:field="*{nombre}" type="text" class="form-control mt-3" name="nombre" id="nombre"
+                               placeholder="Ingrese el nombre">
+                        <input th:field="*{email}" type="email" class="form-control mt-2" name="email" id="email"
+                               placeholder="Ingrese su correo">
+                        <textarea th:field="*{mensaje}" class="form-control mt-2" name="mensaje" id="mensaje" cols="20"
+                                  rows="10" placeholder="Ingrese su mensaje"></textarea>
+
+                        <p class="text-danger" th:if="${error !=null}" th:text="${error}"></p>
+                        <input type="submit" class="btn btn-secondary mt-2" value="Enviar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

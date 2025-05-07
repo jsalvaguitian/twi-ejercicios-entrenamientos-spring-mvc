@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.or">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/vapor/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .div-table {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border: 1px solid #6c757d;
+        }
+
+        .div-table-header {
+            font-weight: bold;
+            background-color: #343a40;
+            color: #00d1b2;
+            /* celeste vapor */
+            padding: 8px;
+            border-bottom: 1px solid #6c757d;
+        }
+
+        .div-table-cell {
+            padding: 8px;
+            border-bottom: 1px solid #6c757d;
+        }
+
+        .div-table-row:nth-child(even) .div-table-cell {
+            background-color: #212529;
+        }
+
+        .div-table-row {
+            display: contents;
+        }
+    </style>
+</head>
+
+<body class="container mt-5">
+
+    <h2 class="text-primary mb-4">Lista de productos</h2>
+
+    <div class="div-table rounded">
+
+        <div class="div-table-header">ID</div>
+        <div class="div-table-header">Nombre</div>
+        <div class="div-table-header">Precio</div>
+        <div class="div-table-header">Ver mas</div>
+
+        
+        <div class="div-table-row" th:each="producto :${listaProductos}">
+            <div class="div-table-cell"><span th:text="${producto.getId()}"></span></div>
+            <div class="div-table-cell"><span th:text="${producto.getNombre()}"></span></div>
+            <div class="div-table-cell"><span th:text="${producto.getPrecio()}"></span></div>
+            <div class="div-table-cell"></div>
+        </div>
+
+    
+
+    </div>
+
+</body>
+
+</html>
