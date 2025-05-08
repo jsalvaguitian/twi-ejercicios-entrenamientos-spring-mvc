@@ -45,7 +45,7 @@ public class ControladorContactoOpcion1Test {
     @Test
     public void dadoUnFormularioContactoCuandoSeProceseLosDatosQueMuestreVistaConfirmacion() {
         // Preparacion
-        ModelAndView modelAndView = controladorContacto.mostrarFormulario();
+        ModelAndView modelAndView;
         ContactoDto contactoDto = new ContactoDto();
         contactoDto.setNombre("Jesica");
         contactoDto.setEmail("jesi@mail.com");
@@ -55,10 +55,11 @@ public class ControladorContactoOpcion1Test {
 
         // Ejecucion
         modelAndView = controladorContacto.procesarFormulario(contactoDto);
+        boolean fueEnviado = servicioMensaje.enviarMensaje(contactoDto);
 
         // Verificacion
         // valido si me dio true cuando todos los campos se completo
-        assertTrue(servicioMensaje.enviarMensaje(contactoDto));// duda
+        assertTrue(fueEnviado);
         assertThat(vistaEsperada, equalTo(modelAndView.getViewName()));
     }
 
@@ -73,11 +74,12 @@ public class ControladorContactoOpcion1Test {
 
         // Ejecucion
         modelAndView = controladorContacto.procesarFormulario(contactoDto);
-
+        boolean fueEnviado = servicioMensaje.enviarMensaje(contactoDto);
+        String mensajeErrorRecibido = modelAndView.getModel().get("error").toString();
         // Verificacion
         // valido si me dio false cuando hubo alguno sin completa
-        assertFalse(servicioMensaje.enviarMensaje(contactoDto));// duda
-        assertThat(modelAndView.getModel().get("error").toString(), equalTo("Hay campos vacios. Por favor complete el formulario"));
+        assertFalse(fueEnviado);
+        assertThat(mensajeErrorRecibido, equalTo("Hay campos vacios. Por favor complete el formulario"));
     }
 
 }

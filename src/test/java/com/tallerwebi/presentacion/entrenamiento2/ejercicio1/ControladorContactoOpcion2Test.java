@@ -29,7 +29,7 @@ public class ControladorContactoOpcion2Test {
         // when()
         ModelAndView vistaModelada = whenGeneroContacto("", mail, mensaje);
         // then()
-        thenContactoFalla(vistaModelada);
+        thenContactoFallaPorCampoNombreVacio(vistaModelada);
     }
 
     @Test
@@ -39,8 +39,9 @@ public class ControladorContactoOpcion2Test {
         // when()
         ModelAndView vistaModelada = whenGeneroContacto(nombre, "", mensaje);
         // then()
-        thenContactoFalla(vistaModelada);
+        thenContactoFallaPorMail(vistaModelada);
     }
+
 
     @Test
     public void siNoHayMensajeQueElContactoFalle() {
@@ -49,11 +50,21 @@ public class ControladorContactoOpcion2Test {
         // when()
         ModelAndView vistaModelada = whenGeneroContacto(nombre, mail, "");
         // then()
-        thenContactoFalla(vistaModelada);
+        thenContactoFallaPorMensaje(vistaModelada);
     }
 
-    private void thenContactoFalla(ModelAndView vistaModelada) {
-        assertTrue(vistaModelada.getModel().containsKey("error"));
+    private void thenContactoFallaPorMensaje(ModelAndView vistaModelada) {
+        assertTrue(vistaModelada.getModel().containsKey("error3"));
+
+    }
+
+    private void thenContactoFallaPorMail(ModelAndView vistaModelada) {
+        assertTrue(vistaModelada.getModel().containsKey("error2"));
+    }
+
+
+    private void thenContactoFallaPorCampoNombreVacio(ModelAndView vistaModelada) {
+        assertTrue(vistaModelada.getModel().containsKey("error1"));
     }
 
    
