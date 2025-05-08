@@ -24,7 +24,9 @@
                         <textarea th:field="*{mensaje}" class="form-control mt-2" name="mensaje" id="mensaje" cols="20"
                                   rows="10" placeholder="Ingrese su mensaje"></textarea>
 
-                        <p class="text-danger" th:if="${error !=null}" th:text="${error}"></p>
+                        <p class="text-danger" th:if="${error1 !=null}" th:text="${error1}"></p>
+                        <p class="text-danger" th:if="${error2 !=null}" th:text="${error2}"></p>
+                        <p class="text-danger" th:if="${error3 !=null}" th:text="${error3}"></p>
                         <input type="submit" class="btn btn-secondary mt-2" value="Enviar">
                     </form>
                 </div>
