@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.jupiter.api.Test;
 
-import com.tallerwebi.presentacion.entrenamiento1.Verificador;
+import com.tallerwebi.dominio.entrenamiento1.Verificador;
 
 /*
  Implementá una función/metodo `validarFortaleza(password: string):
@@ -30,36 +30,73 @@ una contraseña según las siguientes reglas:
  */
 public class Ejercicio1Test {
 
+  @Test
+  public void dadoUnaPWDConMenosDeOchoCaracteresYSinEspecialesCuandoLoValidoQueMeMuestreMensajeINVALIDO() {
+    // Aplicando Patron AAA (Arrange-Act-Assert)
+    // Preparacion
+    String password = "hola";
 
-    @Test
-    public void dadoUnaPWDConMenosDeOchoCaracteresYSinEspecialesCuandoLoValidoQueMeMuestreMensajeINVALIDO(){
-    //Aplicando Patron AAA (Arrange-Act-Assert)
-        //Preparacion
-        String password = "hola";
+    // ejecucion
+    String resultado = Verificador.validarFortalezaPassword(password);
 
-        //ejecucion
-        String resultado =Verificador.validarFortalezaPassword(password);
+    // validacion
+    assertThat(resultado, equalTo("INVALIDA"));
 
-        //validacion
-        assertThat("INVALIDO", equalTo(resultado));
-        
-    }
+  }
 
-    @Test
-    public void dadoUnaPWDCon8CaracteresYCuatroNumerosYUnCaracterEspecialCuandoLoValidoQueMeMuestreMensajeFUERTE(){
-    //Aplicando BDD y AAA
-    //GIVEN
+  @Test
+  public void dadoUnaPWDCon8CaracteresYCuatroNumerosYUnCaracterEspecialCuandoLoValidoQueMeMuestreMensajeFUERTE() {
+    // Aplicando BDD y AAA
+    // GIVEN
+    String contraseniaAVerificar = givenUnaPWDCon8CaracteresYCuatroNumerosYUnCaracterEspecial();
 
-    //WHEN
+    // WHEN
+    String resultado = whenValidoPassword(contraseniaAVerificar);
 
-    //THEN
-    }
+    // THEN
+    thenSeMuestraMensajeFUERTEExitosamente(resultado);
+  }
 
-    @Test
-    public void dadoPWDTiene4CaracteresO1CaracterEspecial(){
+  private void thenSeMuestraMensajeFUERTEExitosamente(String resultado) {
+        assertThat(resultado, equalTo("FUERTE"));    
+  }
 
-    }
-    
+  private String whenValidoPassword(String contraseniaAVerificar) {
+    return Verificador.validarFortalezaPassword(contraseniaAVerificar);
+  }
 
+  private String givenUnaPWDCon8CaracteresYCuatroNumerosYUnCaracterEspecial() {
+    return "hol@2222";
+  }
+
+  @Test
+  public void dadoPWDTiene4CaracteresYTiene1CaracterEspecialCuandoVerificoEntoncesObtengoMensajeMEDIANA() {
+
+    //Preparacion
+    String password = "hola!";
+
+    //Ejecucion
+    String resultado = Verificador.validarFortalezaPassword(password);
+
+    //Validacion
+    assertThat(resultado, equalTo("MEDIANA"));
+
+  }
+
+  @Test
+  public void queAlVerificarUnaContraseniaQueTieneAlmenosSolo8caracteresSeObtengaComoMensajeDEBIL(){
+    String contraseniaAVerificar = givenUnaPWDConSolo8Caracteres();
+    String resultado = whenValidoPassword(contraseniaAVerificar);
+    thenSeMuestraMensajeDEBILExitosamente(resultado);
+
+  }
+
+  private void thenSeMuestraMensajeDEBILExitosamente(String resultado) {
+    assertThat(resultado, equalTo("DEBIL"));
+  }
+
+  private String givenUnaPWDConSolo8Caracteres() {
+    return "holamundo";
+  }
 
 }
